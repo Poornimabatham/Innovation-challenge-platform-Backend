@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "../../styles/Judge.css";
 import "../../styles/Challenge.css";
-
-const API = "https://innovation-challenge-platform-backend.onrender.com";
+import API from "../../config";
 
 const defaultRubric = { innovation: 0, technical: 0, presentation: 0, impact: 0, feasibility: 0 };
 

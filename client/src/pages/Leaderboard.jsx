@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Leaderboard.css";
 import "../styles/Challenge.css";
-
-const API = "https://innovation-challenge-platform-backend.onrender.com";
+import API from "../config";
 
 export default function Leaderboard() {
   const { token } = useAuth();

@@ -3,8 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "../../styles/Challenge.css";
-
-const API = "https://innovation-challenge-platform-backend.onrender.com";
+import API from "../../config";
 
 export default function SubmissionForm() {
   const { token } = useAuth();

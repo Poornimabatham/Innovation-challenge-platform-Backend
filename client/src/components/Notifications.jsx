@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Notification.css";
-
-const API = "https://innovation-challenge-platform-backend.onrender.com";
+import API from "../config";
 
 export default function Notifications() {
   const { token } = useAuth();

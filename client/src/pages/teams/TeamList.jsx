@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "../../styles/Team.css";
 import "../../styles/Challenge.css";
-
-const API = "https://innovation-challenge-platform-backend.onrender.com";
+import API from "../../config";
 
 export default function TeamList() {
   const { user, token } = useAuth();
