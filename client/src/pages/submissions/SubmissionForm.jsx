@@ -6,7 +6,7 @@ import "../../styles/Challenge.css";
 import API from "../../config";
 
 export default function SubmissionForm() {
-  const { token } = useAuth();
+  const { token,user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
   const isEdit = Boolean(id);
@@ -20,9 +20,10 @@ export default function SubmissionForm() {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    axios.get(`${API}/api/teams/my`, { headers })
-      .then(({ data }) => setTeams(data.data))
-      .catch(() => setError("Failed to load teams"));
+    const endpoint = user?.role === "admin" ? `${API}/api/teams` : `${API}/api/teams/my`;
+axios.get(endpoint, { headers })
+  .then(({ data }) => setTeams(data.data))
+  .catch(() => setError("Failed to load teams"));
 
     if (isEdit) {
       axios.get(`${API}/api/submissions/${id}`, { headers })
