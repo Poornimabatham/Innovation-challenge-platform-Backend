@@ -8,6 +8,8 @@ import ChallengeList from "./pages/challenges/ChallengeList";
 import ChallengeForm from "./pages/challenges/ChallengeForm";
 import TeamList from "./pages/teams/TeamList";
 import TeamForm from "./pages/teams/TeamForm";
+import SubmissionList from "./pages/submissions/SubmissionList";
+import SubmissionForm from "./pages/submissions/SubmissionForm";
 
 export default function App() {
   return (
@@ -62,6 +64,30 @@ export default function App() {
             element={
               <PrivateRoute>
                 <TeamForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/submissions"
+            element={
+              <PrivateRoute>
+                <SubmissionList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/submissions/new"
+            element={
+              <PrivateRoute>
+                <SubmissionForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/submissions/edit/:id"
+            element={
+              <PrivateRoute>
+                <SubmissionForm />
               </PrivateRoute>
             }
           />
