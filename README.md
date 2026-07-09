@@ -4,7 +4,7 @@ A production-ready MERN stack platform for managing innovation challenges, teams
 
 ## Live Demo
 - Backend API: https://innovation-challenge-platform-backend.onrender.com
-- Frontend: (Deploy on Vercel/Netlify)
+- Frontend: https://innovation-challenge-platform-backe.vercel.app
 
 ---
 
@@ -13,6 +13,8 @@ A production-ready MERN stack platform for managing innovation challenges, teams
 - Backend: Node.js + Express.js
 - Database: MongoDB Atlas
 - Authentication: JWT
+- Real-time: Socket.io
+- Caching: Redis (ioredis)
 - Containerization: Docker
 
 ---
