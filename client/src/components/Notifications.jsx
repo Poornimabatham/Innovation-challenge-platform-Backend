@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { io } from "socket.io-client";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Notification.css";
 import API from "../config";
 
 export default function Notifications() {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -14,8 +15,14 @@ export default function Notifications() {
 
   useEffect(() => {
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 30000);
-    return () => clearInterval(interval);
+
+    const socket = io(API);
+    socket.emit("join", user?._id);
+    socket.on("notification", (newNotif) => {
+      setNotifications((prev) => [newNotif, ...prev]);
+    });
+
+    return () => socket.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,18 +44,20 @@ export default function Notifications() {
   const markRead = async (id) => {
     try {
       await axios.patch(`${API}/api/notifications/${id}/read`, {}, { headers });
-      fetchNotifications();
+      setNotifications((prev) =>
+        prev.map((n) => (n._id === id ? { ...n, isRead: true } : n))
+      );
     } catch (err) {}
   };
 
   const markAllRead = async () => {
     try {
       await axios.patch(`${API}/api/notifications/read-all`, {}, { headers });
-      fetchNotifications();
+      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
     } catch (err) {}
   };
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return (
     <div className="notification-bell" ref={ref}>
@@ -74,9 +83,11 @@ export default function Notifications() {
             <div className="empty-notifications">No notifications</div>
           ) : (
             notifications.map((n) => (
-              <div key={n._id}
+              <div
+                key={n._id}
                 className={`notification-item ${!n.isRead ? "unread" : ""}`}
-                onClick={() => markRead(n._id)}>
+                onClick={() => markRead(n._id)}
+              >
                 <p>{n.message}</p>
                 <span>{new Date(n.createdAt).toLocaleString()}</span>
               </div>
