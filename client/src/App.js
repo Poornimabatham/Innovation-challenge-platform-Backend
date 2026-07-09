@@ -12,6 +12,7 @@ import SubmissionList from "./pages/submissions/SubmissionList";
 import SubmissionForm from "./pages/submissions/SubmissionForm";
 import JudgeDashboard from "./pages/judge/JudgeDashboard";
 import Leaderboard from "./pages/Leaderboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 export default function App() {
   return (
@@ -106,6 +107,14 @@ export default function App() {
             element={
               <PrivateRoute>
                 <Leaderboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute roles={["admin"]}>
+                <AdminDashboard />
               </PrivateRoute>
             }
           />

@@ -20,8 +20,9 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/challenges", require("./routes/challengeRoutes"));
 app.use("/api/teams", require("./routes/teamRoutes"));
 app.use("/api/submissions", require("./routes/submissionRoutes"));
-app.use("/api/evaluations", require("./routes/evaluationRoutes"));
+app.use("/api/evaluations", require("./routes/evaluationRoute"));
 app.use("/api/leaderboard", require("./routes/leaderboardRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes"));
 
 
 
