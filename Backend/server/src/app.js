@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/challenges", require("./routes/challengeRoutes"));
 app.use("/api/teams", require("./routes/teamRoutes"));
+app.use("/api/submissions", require("./routes/submissionRoutes"));
 
 
 module.exports = app;
