@@ -1,0 +1,371 @@
+{
+  "info": {
+    "name": "Innovation Challenge Platform API",
+    "description": "Complete API collection for Innovation Challenge Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "https://innovation-challenge-platform-backend.onrender.com"
+    },
+    {
+      "key": "TOKEN",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/auth/register",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@test.com\",\n  \"password\": \"123456\",\n  \"role\": \"student\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/auth/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/auth/me",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Challenges",
+      "item": [
+        {
+          "name": "Get All Challenges",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/challenges"
+          }
+        },
+        {
+          "name": "Create Challenge",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/challenges",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"AI Hackathon 2024\",\n  \"description\": \"Build AI solutions\",\n  \"deadline\": \"2024-12-31\",\n  \"prizes\": \"50000 INR\",\n  \"maxTeamSize\": 4,\n  \"tags\": [\"AI\", \"ML\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Challenge",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/api/challenges/:id",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Title\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Publish Challenge",
+          "request": {
+            "method": "PATCH",
+            "url": "{{BASE_URL}}/api/challenges/:id/publish",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Archive Challenge",
+          "request": {
+            "method": "PATCH",
+            "url": "{{BASE_URL}}/api/challenges/:id/archive",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Clone Challenge",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/challenges/:id/clone",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Delete Challenge",
+          "request": {
+            "method": "DELETE",
+            "url": "{{BASE_URL}}/api/challenges/:id",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Get All Teams",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/teams",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Get My Teams",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/teams/my",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Create Team",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/teams",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Team Alpha\",\n  \"challenge\": \"<challenge_id>\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Join Team",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/teams/join",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inviteCode\": \"A1B2C3D4\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Leave Team",
+          "request": {
+            "method": "DELETE",
+            "url": "{{BASE_URL}}/api/teams/:id/leave",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Delete Team",
+          "request": {
+            "method": "DELETE",
+            "url": "{{BASE_URL}}/api/teams/:id",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Submissions",
+      "item": [
+        {
+          "name": "Get All Submissions",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/submissions",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Get My Submissions",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/submissions/my",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Create Submission",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/submissions",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"team\": \"<team_id>\",\n  \"challenge\": \"<challenge_id>\",\n  \"githubLink\": \"https://github.com/repo\",\n  \"pdfUrl\": \"https://drive.google.com/file\",\n  \"videoUrl\": \"https://youtube.com/watch\",\n  \"note\": \"Initial submission\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Submission",
+          "request": {
+            "method": "PUT",
+            "url": "{{BASE_URL}}/api/submissions/:id",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"githubLink\": \"https://github.com/updated\",\n  \"note\": \"Version 2 update\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Lock Submission",
+          "request": {
+            "method": "PATCH",
+            "url": "{{BASE_URL}}/api/submissions/:id/lock",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evaluations",
+      "item": [
+        {
+          "name": "Get Submissions to Judge",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/evaluations/submissions",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Submit Evaluation",
+          "request": {
+            "method": "POST",
+            "url": "{{BASE_URL}}/api/evaluations",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"submission\": \"<submission_id>\",\n  \"challenge\": \"<challenge_id>\",\n  \"rubric\": {\n    \"innovation\": 8,\n    \"technical\": 9,\n    \"presentation\": 7,\n    \"impact\": 8,\n    \"feasibility\": 9\n  },\n  \"feedback\": \"Excellent work!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get My Evaluations",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/evaluations",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leaderboard",
+      "item": [
+        {
+          "name": "Get Leaderboard",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/leaderboard/:challengeId",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Analytics",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/admin/analytics",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/admin/users",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{BASE_URL}}/api/admin/users/:id",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get Notifications",
+          "request": {
+            "method": "GET",
+            "url": "{{BASE_URL}}/api/notifications",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Mark as Read",
+          "request": {
+            "method": "PATCH",
+            "url": "{{BASE_URL}}/api/notifications/:id/read",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Mark All Read",
+          "request": {
+            "method": "PATCH",
+            "url": "{{BASE_URL}}/api/notifications/read-all",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Delete Notification",
+          "request": {
+            "method": "DELETE",
+            "url": "{{BASE_URL}}/api/notifications/:id",
+            "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }]
+          }
+        }
+      ]
+    }
+  ]
+}
