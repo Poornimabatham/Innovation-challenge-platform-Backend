@@ -20,6 +20,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchAnalytics();
     fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchAnalytics = async () => {

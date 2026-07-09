@@ -21,6 +21,7 @@ export default function TeamList() {
   useEffect(() => {
     fetchAllTeams();
     fetchMyTeams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchAllTeams = async () => {

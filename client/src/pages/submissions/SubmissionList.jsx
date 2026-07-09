@@ -18,6 +18,7 @@ export default function SubmissionList() {
 
   useEffect(() => {
     fetchSubmissions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const fetchSubmissions = async () => {

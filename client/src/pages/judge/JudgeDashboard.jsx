@@ -22,6 +22,7 @@ export default function JudgeDashboard() {
 
   useEffect(() => {
     fetchSubmissions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchSubmissions = async () => {

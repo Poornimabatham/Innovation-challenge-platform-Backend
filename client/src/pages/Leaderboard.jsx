@@ -27,6 +27,7 @@ export default function Leaderboard() {
     axios.get(`${API}/api/leaderboard/${selectedChallenge}`, { headers })
       .then(({ data }) => setLeaderboard(data.data))
       .catch(() => setError("Failed to load leaderboard"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChallenge]);
 
   const getRankEmoji = (index) => {
