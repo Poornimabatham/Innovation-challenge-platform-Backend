@@ -6,6 +6,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ChallengeList from "./pages/challenges/ChallengeList";
 import ChallengeForm from "./pages/challenges/ChallengeForm";
+import TeamList from "./pages/teams/TeamList";
+import TeamForm from "./pages/teams/TeamForm";
 
 export default function App() {
   return (
@@ -44,6 +46,22 @@ export default function App() {
             element={
               <PrivateRoute roles={["organizer", "admin"]}>
                 <ChallengeForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/teams"
+            element={
+              <PrivateRoute>
+                <TeamList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/teams/new"
+            element={
+              <PrivateRoute>
+                <TeamForm />
               </PrivateRoute>
             }
           />

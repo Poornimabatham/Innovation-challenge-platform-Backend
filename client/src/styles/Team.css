@@ -1,0 +1,126 @@
+.team-container {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.team-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #10b981;
+}
+
+.team-card h3 {
+    margin: 0 0 0.5rem;
+    color: #1f2937;
+}
+
+.team-card p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.invite-code {
+    background: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4f46e5;
+    letter-spacing: 2px;
+    margin: 8px 0;
+    display: inline-block;
+}
+
+.members-list {
+    margin: 8px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.members-list li {
+    font-size: 13px;
+    color: #374151;
+    padding: 2px 0;
+}
+
+.members-list li::before {
+    content: "👤 ";
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.join-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.join-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.join-section input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    padding: 8px 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.tab.active {
+    border-color: #4f46e5;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #9ca3af;
+}
