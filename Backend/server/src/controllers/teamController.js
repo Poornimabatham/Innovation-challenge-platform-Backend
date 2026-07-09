@@ -1,5 +1,6 @@
 const Team = require("../models/Team");
 const crypto = require("crypto");
+const notify = require("../utils/notify");
 
 exports.createTeam = async (req, res) => {
   try {
@@ -27,6 +28,8 @@ exports.createTeam = async (req, res) => {
       members: [req.user._id],
       inviteCode,
     });
+
+    await notify(req.user._id, `Team "${name}" created successfully!`, "team");
 
     res.status(201).json({ success: true, data: team });
   } catch (err) {

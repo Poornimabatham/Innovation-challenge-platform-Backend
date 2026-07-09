@@ -23,6 +23,8 @@ app.use("/api/submissions", require("./routes/submissionRoutes"));
 app.use("/api/evaluations", require("./routes/evaluationRoute"));
 app.use("/api/leaderboard", require("./routes/leaderboardRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
+app.use("/api/notifications", require("./routes/notificationRoutes"));
+
 
 
 

@@ -1,20 +1,15 @@
 const Submission = require("../models/Submission");
 const Team = require("../models/Team");
+const notify = require("../utils/notify");
+
 
 exports.createSubmission = async (req, res) => {
   try {
     const { team, challenge, githubLink, pdfUrl, videoUrl, note } = req.body;
-
-    const teamDoc = await Team.findById(team);
-    if (!teamDoc)
+    if (!team || !challenge)
       return res
-        .status(404)
-        .json({ success: false, message: "Team not found" });
-
-    if (!teamDoc.members.includes(req.user._id))
-      return res
-        .status(403)
-        .json({ success: false, message: "Not a team member" });
+        .status(400)
+        .json({ success: false, message: "Team and challenge required" });
 
     const existing = await Submission.findOne({ team, challenge });
     if (existing)
@@ -29,8 +24,15 @@ exports.createSubmission = async (req, res) => {
       pdfUrl,
       videoUrl,
       note,
+      submittedBy: req.user._id,
       versions: [{ githubLink, pdfUrl, videoUrl, note }],
     });
+
+    await notify(
+      req.user._id,
+      "Submission created successfully!",
+      "submission",
+    );
 
     res.status(201).json({ success: true, data: submission });
   } catch (err) {
