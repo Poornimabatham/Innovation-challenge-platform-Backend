@@ -10,6 +10,8 @@ import TeamList from "./pages/teams/TeamList";
 import TeamForm from "./pages/teams/TeamForm";
 import SubmissionList from "./pages/submissions/SubmissionList";
 import SubmissionForm from "./pages/submissions/SubmissionForm";
+import JudgeDashboard from "./pages/judge/JudgeDashboard";
+import Leaderboard from "./pages/Leaderboard";
 
 export default function App() {
   return (
@@ -88,6 +90,22 @@ export default function App() {
             element={
               <PrivateRoute>
                 <SubmissionForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/judge"
+            element={
+              <PrivateRoute roles={["judge", "admin"]}>
+                <JudgeDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/leaderboard"
+            element={
+              <PrivateRoute>
+                <Leaderboard />
               </PrivateRoute>
             }
           />

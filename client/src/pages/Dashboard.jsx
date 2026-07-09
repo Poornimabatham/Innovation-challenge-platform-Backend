@@ -23,6 +23,7 @@ export default function Dashboard() {
       </div>
 
       <div className="dashboard-nav">
+
         <button className="nav-card" onClick={() => navigate("/challenges")}>
           🏆 Challenges
         </button>
@@ -41,7 +42,11 @@ export default function Dashboard() {
           📄 Submissions
         </button>
 
-        {user?.role === "judge" && (
+        <button className="nav-card" onClick={() => navigate("/leaderboard")}>
+          📊 Leaderboard
+        </button>
+
+        {(user?.role === "judge" || user?.role === "admin") && (
           <button className="nav-card" onClick={() => navigate("/judge")}>
             ⚖️ Judge Dashboard
           </button>
@@ -53,9 +58,6 @@ export default function Dashboard() {
           </button>
         )}
 
-        <button className="nav-card" onClick={() => navigate("/leaderboard")}>
-          📊 Leaderboard
-        </button>
       </div>
     </div>
   );
