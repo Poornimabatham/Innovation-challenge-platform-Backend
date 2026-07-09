@@ -43,9 +43,12 @@ axios.get(endpoint, { headers })
   }, [id]);
 
   const handleTeamChange = (teamId) => {
-    const selected = teams.find(t => t._id === teamId);
-    setForm({ ...form, team: teamId, challenge: selected?.challenge?._id || "" });
-  };
+  const selected = teams.find(t => t._id === teamId);
+  const challengeId = selected?.challenge?._id || selected?.challenge || "";
+  setForm({ ...form, team: teamId, challenge: challengeId });
+};
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
