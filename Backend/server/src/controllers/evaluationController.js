@@ -60,7 +60,7 @@ exports.getEvaluations = async (req, res) => {
 
 exports.getSubmissionsToJudge = async (req, res) => {
   try {
-    const submissions = await Submission.find({ isLocked: true })
+    const submissions = await Submission.find()
       .populate("team", "name")
       .populate("challenge", "title")
       .populate("submittedBy", "name");

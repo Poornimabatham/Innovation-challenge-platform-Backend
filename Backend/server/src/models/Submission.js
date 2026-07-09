@@ -20,6 +20,7 @@ const submissionSchema = new mongoose.Schema(
     pdfUrl: { type: String },
     videoUrl: { type: String },
     note: { type: String },
+    submittedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isLocked: { type: Boolean, default: false },
     versions: [versionSchema],
   },
