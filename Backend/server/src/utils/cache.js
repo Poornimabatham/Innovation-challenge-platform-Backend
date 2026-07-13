@@ -11,6 +11,8 @@ redis.on("error", (err) => {
 const get = async (key) => {
   try {
     const data = await redis.get(key);
+    if (data) console.log(`✅ CACHE HIT  → ${key}`);
+    else      console.log(`❌ CACHE MISS → ${key}`);
     return data ? JSON.parse(data) : null;
   } catch { return null; }
 };
@@ -18,11 +20,15 @@ const get = async (key) => {
 const set = async (key, value, ttlSeconds = 60) => {
   try {
     await redis.set(key, JSON.stringify(value), "EX", ttlSeconds);
+    console.log(`💾 CACHE SET  → ${key} (TTL: ${ttlSeconds}s)`);
   } catch {}
 };
 
 const del = async (key) => {
-  try { await redis.del(key); } catch {}
+  try {
+    await redis.del(key);
+    console.log(`🗑️  CACHE DEL  → ${key}`);
+  } catch {}
 };
 
 module.exports = { get, set, del };
